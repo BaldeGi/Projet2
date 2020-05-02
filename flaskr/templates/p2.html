@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>p2</title>
+{% endblock %}
+
+{% block body %}
+<canvas id="graphique" width="50px" height="50px"></canvas>
+    <script>
+        // l'identifiant est celui du canevas
+        var ctx = document.getElementById('graphique').getContext('2d');
+        // création du graphique
+        var myChart = new Chart(ctx, {
+        type: 'bar',   // le type du graphique
+        data: {       // les données
+            labels: ["mon","enorme","bite","fait","cette","taille"],
+            datasets: [{
+                        label: 'new cases',
+                        data: [1,5,50,2,3,45]
+                       }]
+               }
+             }
+        );
+    </script>
+{% endblock %}
