@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+     <link rel="stylesheet" href="style.css">
+    <!-- Chargement de la librairie Javascript à utiliser -->
+    <!-- depuis Internet -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <!-- Localement -->
+    <title>Un graphique en batonets</title>
+</head>
+<body
+    <h1>Visualisation graphic</h1>
+    <div style="width: 75% ">
+    <canvas id="graphique" width="200px" height="100px"></canvas>
+    </div>
+
+    <script>
+    Chart.defaults.global.title.display=true;
+    Chart.defaults.global.title.text="Visualisation graphique"
+    </script>
+
+    <script>
+        // l'identifiant est celui du canevas
+        var ctx = document.getElementById('graphique').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{noms | safe}},
+                datasets: [{
+                    label: 'Etudiants avec 0 points',
+                    data: {{notes | safe}},
+                    backgroundColor: "rgba(153,255,51,0.6)"
+                },  {
+                    label: 'Etudiants avec 100 points',
+                    data: {{notes2 | safe}},
+                    backgroundColor: "rgba(255,153,0,0.6)"
+                }]
+            }
+        });
+    </script>
+
+</body>
+
+</html>
