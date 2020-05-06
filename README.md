@@ -1,6 +1,6 @@
 Missing sqlite file for the data base and the virtual environment
 
-![](images/1graph.png)
+❮img src="images/1graph.png" width="100" ❯
 
 
 ![](images/2graph.png)
