@@ -1,27 +1,28 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Nombre d'essais moyen par tâche</title>
+<title>Réussite par tâche</title>
 <li><a href="{{ url_for('p2') }}">Nombre de réussite par rapport aux nombre d'essais</a></li>
-<li><a href="{{ url_for('p3') }}">Note moyenne par tâche</a></li>
+<li><a href="{{ url_for('index') }}">Nombre d'essais moyen par tâche</a></li>
 {% endblock %}
 
 {% block body %}
 <canvas id="graphique" width="50px" height="50px"></canvas>
-        <script>
+    <script>
         // l'identifiant est celui du canevas
         var ctx = document.getElementById('graphique').getContext('2d');
         // création du graphique
         var myChart = new Chart(ctx, {
         type: 'bar',   // le type du graphique
         data: {       // les données
-            labels: {{noms | safe}},
+            labels: {{tasks | safe}},
             datasets: [{
-                        label: "Nombre d'essais moyen",
-                        data: {{notes | safe}}
+                        label: 'note moyenne',
+                        data: {{notes | safe}},
+                        backgroundColor: "rgba(80,0,255,0.2)"
                        }]
                }
              }
         );
-        </script>
+    </script>
 {% endblock %}

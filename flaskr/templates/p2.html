@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>p2</title>
+<title>Réussite par tâche</title>
+<li><a href="{{ url_for('index') }}">Nombre d'essais moyen par tâche</a></li>
+<li><a href="{{ url_for('p3') }}">Note moyenne par tâche</a></li>
 {% endblock %}
 
 {% block body %}
@@ -11,13 +13,20 @@
         var ctx = document.getElementById('graphique').getContext('2d');
         // création du graphique
         var myChart = new Chart(ctx, {
-        type: 'bar',   // le type du graphique
+        type: 'line',   // le type du graphique
         data: {       // les données
-            labels: ["mon","enorme","bite","fait","cette","taille"],
+            labels: {{tasks | safe}},
             datasets: [{
-                        label: 'new cases',
-                        data: [1,5,50,2,3,45]
-                       }]
+                        label: 'Nombre de réussite',
+                        data: {{succ | safe}},
+                        backgroundColor: "rgba(0,255,0,0.2)"
+                       }, {
+            			label: "Nombre d'essai",
+            			data: {{soum | safe}},
+            			backgroundColor: "rgba(255,0,0,0.2)",
+            			// Changes this dataset to become a line
+            			type: 'line'
+        				}]
                }
              }
         );

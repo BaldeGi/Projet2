@@ -13,7 +13,13 @@ def index():
 
 @app.route('/page2')
 def p2():
-    return render_template('p2.html')
+    data2 = data_treat('inginious.sqlite')
+    return render_template('p2.html', tasks = data2[0], succ = data2[1], soum = data2[2])
+
+@app.route('/page3')
+def p3():
+    data3 = data_t('inginious.sqlite')
+    return render_template('p3.html', tasks = data3[0], notes = data3[1])
 
 if __name__ == '__main__':
     app.run(debug = True)
@@ -21,23 +27,45 @@ if __name__ == '__main__':
 def data_treatment(file_path):
     conn = sqlite3.connect(file_path)
     cur = conn.cursor()
-    selction = cur.execute("SELECT username, grade FROM submissions WHERE course = 'LSINF1252'")
-    names = []
-    grades = []
-    i = 0
-    for row in selction:
-        names.append(row[0])
-        grades.append(row[1])
-        i+=1
-        if i == 10:
-            break
+    selection = cur.execute("SELECT DISTINCT task FROM user_tasks WHERE course ='LEPL1402'")
+    tasks = []
+    for i in selection:
+        tasks.append(i[0])
+    trys = []
+    for i in tasks:
+        cur.execute("SELECT avg(tried) FROM user_tasks WHERE course = 'LEPL1402' AND task = '{}'".format(i))
+        trys.append(cur.fetchall()[0][0])
     conn.close()
-    return [names, grades]
+    return [tasks, trys]
 
-def data_test(file_path):
+def data_treat(file_path):
     conn = sqlite3.connect(file_path)
     cur = conn.cursor()
-    cur.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name")
-    available_table = cur.fetchall()
+    selection = cur.execute("SELECT DISTINCT task FROM submissions WHERE course ='LEPL1402'")
+    tasks = []
+    for i in selection:
+        tasks.append(i[0])
+    success_nbr = []
+    for i in tasks:
+        cur.execute("SELECT count(*) FROM submissions WHERE course ='LEPL1402' AND result = 'success' AND task = '{}'".format(i))
+        success_nbr.append(cur.fetchall()[0][0])
+    soumissions = []
+    for i in tasks:
+        cur.execute("SELECT count(*) FROM submissions WHERE course ='LEPL1402' AND task = '{}'".format(i))
+        soumissions.append(cur.fetchall()[0][0])
     conn.close()
-    print(available_table)
+    return [tasks, success_nbr,soumissions]
+
+def data_t(file_path):
+    conn = sqlite3.connect(file_path)
+    cur = conn.cursor()
+    selection = cur.execute("SELECT DISTINCT task FROM user_tasks WHERE course = 'LEPL1402'")
+    tasks = []
+    for i in selection:
+        tasks.append(i[0])
+    notes = []
+    for i in tasks:
+        cur.execute("SELECT avg(grade) FROM user_tasks WHERE course = 'LEPL1402' AND task = '{}'".format(i))
+        notes.append(cur.fetchall()[0][0])
+    conn.close()
+    return [tasks, notes]
