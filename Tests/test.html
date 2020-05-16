@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <!-- Chargement de la librairie Javascript à utiliser -->
+    <!-- depuis Internet -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <!-- Localement -->
+    <title>Un graphique en batonets</title>
+    <link rel="stylesheet" href="static/graphe_lecture.css">
+</head>
+
+<body <h1 Visualisation graphe>
+    </h1>
+    <div style="width: 75% ">
+        <canvas id="graphique" width="200px" height="100px"></canvas>
+    </div>
+
+    <script>
+        Chart.defaults.global.title.display = true;
+        Chart.defaults.global.title.text = "Visualisation graphique"
+    </script>
+
+    <script>
+        // l'identifiant est celui du canevas
+        var ctx = document.getElementById('graphique').getContext('2d');
+        // création du graphique
+        var myChart = new Chart(ctx, {
+            type: 'line', // le type du graphique
+            data: { // les données
+                labels: ["ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok", "ok"],
+                datasets: [{
+                    label: 'Cours',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [2, 3, 4, 2, 1, 5, 5, 6, 6, 8, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 50]
+
+
+                }]
+            }
+        });
+    </script>
+    <div class="container">
+        <div class="header__slogan">
+            <a href="file:///C:/Users/mlbal/PycharmProjects/Tests/index.html" class="graphe">
+                <div class="h__slogan--title">Retour
+            </a>
+            </div>
+        </div>
+
+</body>
+
+</html>

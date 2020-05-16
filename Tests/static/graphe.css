@@ -1,0 +1,30 @@
+.graphiques {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.graphiques__title {
+    font-size: 30px;
+    text-align: center;
+    color: black;
+    display: inline;
+}
+
+.graphiques__items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 25px;
+    cursor: pointer;
+}
+
+.graphe {
+    width: 25%;
+    height: 200px;
+    background: red;
+    text-decoration: none;
+}
+
+.graphe__title {
+    color: white;
+}

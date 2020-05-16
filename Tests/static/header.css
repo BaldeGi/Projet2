@@ -1,0 +1,120 @@
+.header {
+    height: 450px;
+    width: 100%;
+    background: black;
+    position: relative;
+}
+
+.header_texture {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url('../img/Data.jpg') center no-repeat;
+    background-size: cover;
+    z-index: 1;
+    opacity: 0.4;
+}
+
+.header__navbar {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__navbar--logo_title {
+    color: white;
+    font-size: 28px;
+}
+
+.header__navbar--menu-link {
+    margin-left: 40px;
+    color: white;
+    text-decoration: none;
+}
+
+.header__slogan {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.h__slogan--title {
+    color: white;
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+.header__navbar-toggle {
+    width: 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    display: none;
+    cursor: pointer;
+}
+
+.header__navbar-toggle-icons,
+.header__navbar-toggle-icons:before,
+.header__navbar-toggle-icons:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 3px;
+    border-radius: 5px;
+    background: white;
+    position: relative;
+}
+
+.header__navbar-toggle-icons:before {
+    top: 10px
+}
+
+.header__navbar-toggle-icons:after {
+    top: -14px
+}
+
+.is-open .header__navbar--menu {
+    transform: translateY(0)
+}
+
+@media only screen and (max-width: 705px) {
+    .container {
+        width: 100%;
+        padding: 0 20px;
+    }
+    .header__navbar-toggle {
+        display: flex;
+        z-index: 1000;
+    }
+    .header__navbar--menu {
+        transition: all 0.2s ease-in-out;
+        transform: translateY(-100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background: black;
+        top: 0;
+        left: 0;
+    }
+    .header__navbar--menu-link {
+        margin: 20px;
+        font-size: 25px;
+        color: white;
+    }
+    .header__slogan {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+}

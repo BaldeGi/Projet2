@@ -1,0 +1,10 @@
+.header__slogan {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.h__slogan--title {
+    font-size: 20px;
+}
