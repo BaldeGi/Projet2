@@ -8,8 +8,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    return render_template('index.html')
+
+@app.route('/page1')
+def p1():
     data = data_treatment('inginious.sqlite')
-    return render_template('index.html', noms = data[0], notes = data[1])
+    return render_template('p1.html', noms = data[0], notes = data[1])
 
 @app.route('/page2')
 def p2():
@@ -25,33 +29,33 @@ if __name__ == '__main__':
     app.run(debug = True)
 
 def data_treatment(file_path):
-    conn = sqlite3.connect(file_path)
+    conn = sqlite3.connect('inginious.sqlite')
     cur = conn.cursor()
-    selection = cur.execute("SELECT DISTINCT task FROM user_tasks WHERE course ='LEPL1402'")
-    tasks = []
-    for i in selection:
-        tasks.append(i[0])
-    trys = []
-    for i in tasks:
-        cur.execute("SELECT avg(tried) FROM user_tasks WHERE course = 'LEPL1402' AND task = '{}'".format(i))
-        trys.append(cur.fetchall()[0][0])
+    selction = cur.execute("SELECT DISTINCT course FROM submissions")
+    names = []
+    for i in selction:
+        names.append(i[0])
+    succ = []
+    for i in names:
+        cur.execute("SELECT task FROM submissions WHERE result = 'success' AND course = '{}'".format(i))
+        succ.append(len(cur.fetchall()))
     conn.close()
-    return [tasks, trys]
+    return [names, succ]
 
 def data_treat(file_path):
     conn = sqlite3.connect(file_path)
     cur = conn.cursor()
-    selection = cur.execute("SELECT DISTINCT task FROM submissions WHERE course ='LEPL1402'")
+    selection = cur.execute("SELECT DISTINCT task FROM submissions WHERE course ='LSINF1101-PYTHON'")
     tasks = []
     for i in selection:
         tasks.append(i[0])
     success_nbr = []
     for i in tasks:
-        cur.execute("SELECT count(*) FROM submissions WHERE course ='LEPL1402' AND result = 'success' AND task = '{}'".format(i))
+        cur.execute("SELECT count(*) FROM submissions WHERE course ='LSINF1101-PYTHON' AND result = 'success' AND task = '{}'".format(i))
         success_nbr.append(cur.fetchall()[0][0])
     soumissions = []
     for i in tasks:
-        cur.execute("SELECT count(*) FROM submissions WHERE course ='LEPL1402' AND task = '{}'".format(i))
+        cur.execute("SELECT count(*) FROM submissions WHERE course ='LSINF1101-PYTHON' AND task = '{}'".format(i))
         soumissions.append(cur.fetchall()[0][0])
     conn.close()
     return [tasks, success_nbr,soumissions]

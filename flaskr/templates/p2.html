@@ -2,12 +2,19 @@
 
 {% block head %}
 <title>Réussite par tâche</title>
-<li><a href="{{ url_for('index') }}">Nombre d'essais moyen par tâche</a></li>
-<li><a href="{{ url_for('p3') }}">Note moyenne par tâche</a></li>
+<ul>
+    <li><a href="{{ url_for('index') }}">Acceuil</a></li>
+    <li><a href="{{ url_for('p1') }}">Nombre de tâches réussies par cours</a></li>
+    <li><a href="{{ url_for('p3') }}">Notes moyenne par tâches</a></li>
+</ul>
 {% endblock %}
 
 {% block body %}
-<canvas id="graphique" width="50px" height="50px"></canvas>
+<canvas id="graphique" width="100px" height="50px"></canvas>
+	<script>
+			Chart.defaults.global.title.display=true
+			Chart.defaults.global.title.text="Nombre de réussite par rapport aux nombre d'essais pour chaque tâche pour le cours LSINF1101-PYTHON"
+	</script>
     <script>
         // l'identifiant est celui du canevas
         var ctx = document.getElementById('graphique').getContext('2d');

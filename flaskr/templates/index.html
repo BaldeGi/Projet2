@@ -1,27 +1,33 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="fr">
 
-{% block head %}
-<title>Nombre d'essais moyen par tâche</title>
-<li><a href="{{ url_for('p2') }}">Nombre de réussite par rapport aux nombre d'essais</a></li>
-<li><a href="{{ url_for('p3') }}">Note moyenne par tâche</a></li>
-{% endblock %}
-
-{% block body %}
-<canvas id="graphique" width="50px" height="50px"></canvas>
-        <script>
-        // l'identifiant est celui du canevas
-        var ctx = document.getElementById('graphique').getContext('2d');
-        // création du graphique
-        var myChart = new Chart(ctx, {
-        type: 'bar',   // le type du graphique
-        data: {       // les données
-            labels: {{noms | safe}},
-            datasets: [{
-                        label: "Nombre d'essais moyen",
-                        data: {{notes | safe}}
-                       }]
-               }
-             }
-        );
-        </script>
-{% endblock %}
+<html>
+<head>
+    <title>Acceuil</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+<body>
+    <div id ="container">
+        <div id="head">
+            <h1>Projet 2 groupe B2</h1>
+        </div>
+        <div id="content">
+            <div class="nav">
+                <ul id="horizontal-list">
+                    <li><a href="{{ url_for('p1') }}">Première visualisation</a></li>
+                    <li><a href="{{ url_for('p2') }}">Seconde visualisation</a></li>
+                    <li><a href="{{ url_for('p3') }}">Troisième visualisation</a></li>
+                </ul>
+            </div>
+            <div id="instru">
+                <p>Bienvenue sur notre site pour la visualisation de donné via le framework flask. Nous nous basons sur la base de donnée "inginious.sqlite". Vous trouverez ci-dessus une bar de navigation permettant de choisir quel graphique vous désirez voir.</p>
+                <p>Le premier graphique représente le nombre de tâches réussies par cours. Le second afiche le nombre d'essayes (en rouge), et le nombre de soummissons réussies (en vert) pour chaque tâche du cours LSINF1101-PYTHON. Le dernier graphe permet de voir la note moyen pour chaque tâches du cours LEPL1402.
+                </p>
+            </div>
+            <div id="footnote">
+                Note: Le second graphique risque de prendre un peu de temps pour s'afficher.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
