@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Nombre de tâches réussies par cours</title>
+<title>Nombre de soumissions réussies par cours</title>
 <ul>
-    <li><a href="{{ url_for('index') }}">Acceuil</a></li>
+    <li><a href="{{ url_for('index') }}">Accueil</a></li>
     <li><a href="{{ url_for('p2') }}">Nombre de réussites par rapport aux nombre d'essais pour le cours LSINF1101-PYTHON</a></li>
     <li><a href="{{ url_for('p3') }}">Notes moyenne par tâches</a></li>
 </ul>
@@ -13,7 +13,7 @@
 <canvas id="graphique" width="150px" height="50px"></canvas>
 		<script>
 			Chart.defaults.global.title.display=true
-			Chart.defaults.global.title.text="Nombre de tâches réussies par cours"
+			Chart.defaults.global.title.text="Nombre de soumissions réussies par cours"
 		</script>
         <script>
         // l'identifiant est celui du canevas
@@ -24,7 +24,7 @@
         data: {       // les données
             labels: {{noms | safe}},
             datasets: [{
-                        label: "Nombre de tache réussie",
+                        label: "Nombre de soumissions réussie",
                         backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
                         data: {{notes | safe}}
                        }]
